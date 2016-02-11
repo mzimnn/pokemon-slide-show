@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class ImageHandler {
 	
-	private static final int IMAGE_COUNT = 721;
+	private static int IMAGE_COUNT = 721;
 	
 	private ArrayList<Image> imgs;
 	private int next = 0;
@@ -27,6 +27,7 @@ public class ImageHandler {
 				}
 				catch(Exception e) {
 					System.out.println("Couldn't fetch image (" + url + ")");
+					IMAGE_COUNT--;
 				}
 				
 				synchronized(this) {
