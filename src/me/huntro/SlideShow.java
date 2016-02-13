@@ -29,15 +29,16 @@ public class SlideShow implements Runnable {
 	public void run() {
 		
 		ImageHandler imgHandler = new ImageHandler();
+		ImageView imgView = new ImageView();
+		
+		imgView.setSmooth(true);
+		root.getChildren().add(imgView);
 		
 		while(true) {
 			Image img = imgHandler.getNextImage();
-			ImageView imgView = new ImageView(img);
-			imgView.setSmooth(true);
+			imgView.setImage(img);
 			
 			Platform.runLater(() ->  {
-				root.getChildren().clear();
-				root.getChildren().add(imgView);
 				root.setBorder(new Border(new BorderStroke(img.getAverageColor(), BorderStrokeStyle.SOLID, RADII, BORDER_WIDTH)));
 				
 				if(!stage.isShowing()) {
