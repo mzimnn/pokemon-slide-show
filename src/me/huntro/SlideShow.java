@@ -38,7 +38,7 @@ public class SlideShow implements Runnable {
 			Image img = imgHandler.getNextImage();
 			imgView.setImage(img);
 			
-			Platform.runLater(() ->  {
+			Platform.runLater(() -> {
 				root.setBorder(new Border(new BorderStroke(img.getAverageColor(), BorderStrokeStyle.SOLID, RADII, BORDER_WIDTH)));
 				
 				if(!stage.isShowing()) {

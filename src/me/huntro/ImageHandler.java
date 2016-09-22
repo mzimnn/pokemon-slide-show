@@ -19,7 +19,7 @@ public class ImageHandler {
 	
 	private void fetchImages() {
 		final Thread imageFetcher = new Thread(() -> {
-			for(int i = 1;i <= imageCount;i++) {				
+			for(int i = 1;i <= imageCount;i++) {
 				String url = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/" + String.format("%03d", i) + ".png";
 				
 				try {
@@ -42,8 +42,8 @@ public class ImageHandler {
 	}
 	
 	public Image getNextImage() {
-				
-		synchronized(this) {			
+		
+		synchronized(this) {
 			while(imgs.size() <= next) {
 				try {
 					wait();
