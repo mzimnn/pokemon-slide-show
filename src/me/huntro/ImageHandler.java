@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class ImageHandler {
 	
-	private static int IMAGE_COUNT = 721;
+	private static int imageCount = 721;
 	
 	private ArrayList<Image> imgs;
 	private int next = 0;
@@ -19,7 +19,7 @@ public class ImageHandler {
 	
 	private void fetchImages() {
 		final Thread imageFetcher = new Thread(() -> {
-			for(int i = 1;i <= IMAGE_COUNT;i++) {				
+			for(int i = 1;i <= imageCount;i++) {				
 				String url = "https://assets.pokemon.com/assets/cms2/img/pokedex/full/" + String.format("%03d", i) + ".png";
 				
 				try {
@@ -27,7 +27,7 @@ public class ImageHandler {
 				}
 				catch(Exception e) {
 					System.out.println("Couldn't fetch image (" + url + ")");
-					IMAGE_COUNT--;
+					imageCount--;
 				}
 				
 				synchronized(this) {
@@ -56,7 +56,7 @@ public class ImageHandler {
 		
 		Image img = imgs.get(next++);
 		
-		if(next >= IMAGE_COUNT) {
+		if(next >= imageCount) {
 			next = 0;
 		}
 		
