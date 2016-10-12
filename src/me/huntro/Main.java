@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
-public class Main extends Application { 
+public class Main extends Application {
 	
 	private double x;
 	private double y;
