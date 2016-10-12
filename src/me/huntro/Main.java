@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
-public class Main extends Application {
+public class Main extends Application { 
 	
 	private double x;
 	private double y;
@@ -27,7 +27,9 @@ public class Main extends Application {
 	@Override
 	public void start(Stage stage) throws Exception {
 		
-		Pane root = new Pane();
+		ProxyHandler.setProxy(System.getenv("https_proxy"));
+		
+		Pane root = new Pane();		
 		
 		configStage(stage, root);
 		
@@ -38,7 +40,9 @@ public class Main extends Application {
 		
 		Platform.runLater(() -> {
 			try {
-				stage.getIcons().add(new Image(new URL("https://upload.wikimedia.org/wikipedia/en/3/39/Pokeball.PNG").openStream()));
+				URL url = new URL("https://upload.wikimedia.org/wikipedia/en/3/39/Pokeball.PNG");
+				
+				stage.getIcons().add(new Image(ProxyHandler.openConnection(url).getInputStream()));
 			}
 			catch(Exception e) {
 				e.printStackTrace();
