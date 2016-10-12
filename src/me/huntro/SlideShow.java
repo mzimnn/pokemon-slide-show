@@ -10,8 +10,9 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class SlideShow implements Runnable {
-	
+
+public class SlideShow implements Runnable
+{
 	public static final long INTERVAL = 2000L;
 	public static final BorderWidths BORDER_WIDTH = new BorderWidths(50);
 	public static final CornerRadii RADII = new CornerRadii(50);
@@ -19,29 +20,32 @@ public class SlideShow implements Runnable {
 	private Stage stage;
 	private Pane root;
 	
-	public SlideShow(Stage stage, Pane root) {
-		
+	public SlideShow(Stage stage, Pane root)
+	{
 		this.stage = stage;
 		this.root = root;
 	}
 	
 	@Override
-	public void run() {
-		
+	public void run()
+	{
 		ImageHandler imgHandler = new ImageHandler();
 		ImageView imgView = new ImageView();
 		
 		imgView.setSmooth(true);
 		root.getChildren().add(imgView);
 		
-		while(true) {
+		while(true)
+		{
 			Image img = imgHandler.getNextImage();
 			imgView.setImage(img);
 			
-			Platform.runLater(() -> {
+			Platform.runLater(() ->
+			{
 				root.setBorder(new Border(new BorderStroke(img.getAverageColor(), BorderStrokeStyle.SOLID, RADII, BORDER_WIDTH)));
 				
-				if(!stage.isShowing()) {
+				if(!stage.isShowing())
+				{
 					stage.show();
 				}
 				
@@ -50,10 +54,12 @@ public class SlideShow implements Runnable {
 				
 			});
 			
-			try {
+			try
+			{
 				Thread.sleep(INTERVAL);
 			}
-			catch(InterruptedException e) {
+			catch(InterruptedException e)
+			{
 				e.printStackTrace();
 			}
 		}

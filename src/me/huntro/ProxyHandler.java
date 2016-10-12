@@ -9,31 +9,36 @@ import java.net.Proxy.Type;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class ProxyHandler {
-	
+
+public class ProxyHandler
+{
 	private static Proxy proxy;
 	
-	public static URLConnection openConnection(URL url) {
-		
-		try {
-			if(proxy == null) {
+	public static URLConnection openConnection(URL url)
+	{
+		try
+		{
+			if(proxy == null)
+			{
 				return url.openConnection();
 			}
 			
 			return url.openConnection(proxy);
 		}
-		catch(IOException e) {
+		catch(IOException e)
+		{
 			e.printStackTrace();
 			
 			return null;
 		}
 	}
 	
-	public static void setProxy(String proxyUrl) {
-		
+	public static void setProxy(String proxyUrl)
+	{
 		Matcher matcher = Pattern.compile("https?://((?:\\d{1,3}\\.){3}\\d{1,3}):(\\d{1,5})").matcher(proxyUrl);
 		
-		if(matcher.matches()) {
+		if(matcher.matches())
+		{
 			String host = matcher.group(1);
 			int port = Integer.parseInt(matcher.group(2));
 			
