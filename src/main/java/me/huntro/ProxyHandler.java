@@ -3,9 +3,9 @@ package me.huntro;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.Proxy;
+import java.net.Proxy.Type;
 import java.net.URL;
 import java.net.URLConnection;
-import java.net.Proxy.Type;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -35,6 +35,8 @@ public class ProxyHandler
 	
 	public static void setProxy(String proxyUrl)
 	{
+		if(proxyUrl == null) return;
+		
 		Matcher matcher = Pattern.compile("https?://((?:\\d{1,3}\\.){3}\\d{1,3}):(\\d{1,5})").matcher(proxyUrl);
 		
 		if(matcher.matches())
