@@ -6,7 +6,7 @@ You can watch it in action on [YouTube](https://www.youtube.com/watch?v=BmSBQlLC
 
 Go into the project directory and execute the command below.
 <br>
-This will build a jar file. You can found it in `SlideShow/target/`.
+This will build a jar file. You can find it in `SlideShow/target/`.
 
 `mvn clean install`
 
@@ -14,7 +14,7 @@ This will build a jar file. You can found it in `SlideShow/target/`.
 
 To execute the application go into the `target` directory and execute following command:
 
-`java -jar SlideShow.jar-1.0.jar`
+`java -jar SlideShow-1.0.jar`
 
 ## Proxy
 
