@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class ImageHandler
 {
-	private static int imageCount = 721;
+	private static int imageCount = 802;
 	
 	private ArrayList<Image> imgs;
 	private int next = 0;
