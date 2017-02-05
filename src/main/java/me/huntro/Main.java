@@ -28,8 +28,6 @@ public class Main extends Application
 	@Override
 	public void start(Stage stage) throws Exception
 	{
-		ProxyHandler.setProxy(System.getenv("https_proxy"));
-		
 		Pane root = new Pane();
 		
 		configStage(stage, root);

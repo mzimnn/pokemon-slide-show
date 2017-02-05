@@ -14,26 +14,28 @@ public class ProxyHandler
 {
 	private static Proxy proxy;
 	
+	static
+	{
+		setProxy(System.getenv("https_proxy"));
+	}
+	
 	public static URLConnection openConnection(URL url)
 	{
+		URLConnection connection = null;
+		
 		try
 		{
-			if(proxy == null)
-			{
-				return url.openConnection();
-			}
-			
-			return url.openConnection(proxy);
+			connection = proxy == null ? url.openConnection() : url.openConnection(proxy);
 		}
 		catch(IOException e)
 		{
 			e.printStackTrace();
-			
-			return null;
 		}
+		
+		return connection;
 	}
 	
-	public static void setProxy(String proxyUrl)
+	private static void setProxy(String proxyUrl)
 	{
 		if(proxyUrl == null) return;
 		
