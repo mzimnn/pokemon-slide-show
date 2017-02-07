@@ -13,6 +13,10 @@ public class Main extends Application
 	@Override
 	public void start(Stage stage) throws Exception
 	{
-		new SlideShow(stage).start();
+		SlideShow slideShow = new SlideShow(stage);
+
+		slideShow.setTitle("Pokemon");
+
+		slideShow.start();
 	}
 }

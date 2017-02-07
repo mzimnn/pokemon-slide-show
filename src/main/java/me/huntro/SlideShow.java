@@ -36,7 +36,6 @@ public class SlideShow
 
 		stage.getIcons().add(Cache.getIcon());
 
-		stage.setTitle("Pokemon");
 		stage.initStyle(StageStyle.TRANSPARENT);
 		stage.setAlwaysOnTop(true);
 		stage.centerOnScreen();
@@ -92,6 +91,11 @@ public class SlideShow
 				}
 			}
 		}).start();
+	}
+
+	public void setTitle(String title)
+	{
+		stage.setTitle(title);
 	}
 
 	private Scene getScene()
