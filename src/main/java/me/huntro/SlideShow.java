@@ -19,30 +19,30 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
-
 public class SlideShow
 {
 	public static final long INTERVAL = 2000L;
 	public static final BorderWidths BORDER_WIDTH = new BorderWidths(50);
 	public static final CornerRadii RADII = new CornerRadii(50);
-	
+
 	private Stage stage;
 	private Pane root = new Pane();
-	
+
 	private double x;
 	private double y;
-	
+
+
 	public SlideShow(Stage stage)
 	{
 		this.stage = stage;
-		
+
 		stage.getIcons().add(Cache.getIcon());
-		
+
 		stage.setTitle("Pokemon");
 		stage.initStyle(StageStyle.TRANSPARENT);
 		stage.setAlwaysOnTop(true);
 		stage.centerOnScreen();
-		
+
 		stage.addEventHandler(KeyEvent.KEY_RELEASED, e ->
 		{
 			if(e.getCode() == KeyCode.ESCAPE)
@@ -51,40 +51,39 @@ public class SlideShow
 			}
 		});
 		stage.setOnCloseRequest(e -> System.exit(0));
-		
+
 		stage.setScene(getScene());
 		stage.sizeToScene();
 	}
-	
+
 	public void start()
 	{
 		new Thread(() ->
 		{
 			ImageHandler imgHandler = new ImageHandler();
 			ImageView imgView = new ImageView();
-			
+
 			imgView.setSmooth(true);
 			root.getChildren().add(imgView);
-			
+
 			while(true)
 			{
 				Image img = imgHandler.getNextImage();
 				imgView.setImage(img);
-				
+
 				Platform.runLater(() ->
 				{
 					root.setBorder(new Border(new BorderStroke(img.getAverageColor(), BorderStrokeStyle.SOLID, RADII, BORDER_WIDTH)));
-					
+
 					if(!stage.isShowing())
 					{
 						stage.show();
 					}
-					
+
 					stage.setWidth(img.getWidth());
 					stage.setHeight(img.getHeight());
-					
 				});
-				
+
 				try
 				{
 					Thread.sleep(INTERVAL);
@@ -96,21 +95,21 @@ public class SlideShow
 			}
 		}).start();
 	}
-	
+
 	private Scene getScene()
 	{
 		Scene scene = new Scene(root);
-		
+
 		scene.setCursor(Cursor.OPEN_HAND);
 		scene.setFill(null);
-		
+
 		scene.setOnMousePressed(e ->
 		{
 			if(e.getButton() == MouseButton.PRIMARY)
 			{
 				x = stage.getX() - e.getScreenX();
 				y = stage.getY() - e.getScreenY();
-				
+
 				scene.setCursor(Cursor.CLOSED_HAND);
 			}
 		});
@@ -129,7 +128,7 @@ public class SlideShow
 				scene.setCursor(Cursor.OPEN_HAND);
 			}
 		});
-		
+
 		return scene;
 	}
 }
