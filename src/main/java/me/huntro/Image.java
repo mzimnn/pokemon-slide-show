@@ -23,9 +23,9 @@ public class Image extends javafx.scene.image.Image
 		double pixelCount = 0;
 		double r = 0, g = 0, b = 0;
 
-		for(int y = 0;y < this.getHeight();y++)
+		for(int y = 0; y < this.getHeight(); y++)
 		{
-			for(int x = 0;x < this.getWidth();x++)
+			for(int x = 0; x < this.getWidth(); x++)
 			{
 				Color color = reader.getColor(x, y);
 
