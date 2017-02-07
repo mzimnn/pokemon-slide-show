@@ -1,7 +1,5 @@
 package me.huntro;
 
-import java.net.URL;
-
 import javafx.application.Platform;
 import javafx.scene.Cursor;
 import javafx.scene.Scene;
