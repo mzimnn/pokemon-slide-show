@@ -72,11 +72,6 @@ public class SlideShow
 				{
 					root.setBorder(new Border(new BorderStroke(img.getAverageColor(), BorderStrokeStyle.SOLID, RADII, BORDER_WIDTH)));
 
-					if(!stage.isShowing())
-					{
-						stage.show();
-					}
-
 					stage.setWidth(img.getWidth());
 					stage.setHeight(img.getHeight());
 				});
@@ -91,6 +86,8 @@ public class SlideShow
 				}
 			}
 		}).start();
+
+		stage.show();
 	}
 
 	public void setTitle(String title)

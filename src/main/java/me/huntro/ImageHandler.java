@@ -4,16 +4,14 @@ import java.util.ArrayList;
 
 public class ImageHandler
 {
-	private static int imageCount = 802;
+	private static final int imageCount = 802;
 
-	private ArrayList<Image> imgs;
+	private final ArrayList<Image> imgs = new ArrayList<>(imageCount);
 	private int next = 0;
 
 
 	public ImageHandler()
 	{
-		imgs = new ArrayList<>();
-
 		fetchImages();
 	}
 
@@ -21,23 +19,15 @@ public class ImageHandler
 	{
 		final Thread imageFetcher = new Thread(() ->
 		{
-			for(int i = 1; i <= imageCount; i++)
+			for(int i = 1; i <= imageCount; ++i)
 			{
-				try
-				{
-					imgs.add(Cache.getPokemonImage(i));
-				}
-				catch(Exception e)
-				{
-					System.out.println("Couldn't fetch image (" + String.format("%03d", i) + ")");
-					imageCount--;
-				}
+				imgs.add(Cache.getPokemonImage(i));
 
-				synchronized(this)
+				if(imgs.size() > next)
 				{
-					if(imgs.size() > next)
+					synchronized(this)
 					{
-						this.notify();
+						notify();
 					}
 				}
 			}
@@ -48,18 +38,18 @@ public class ImageHandler
 
 	public Image getNextImage()
 	{
-		synchronized(this)
+		while(imgs.size() <= next)
 		{
-			while(imgs.size() <= next)
+			try
 			{
-				try
+				synchronized(this)
 				{
 					wait();
 				}
-				catch(InterruptedException e)
-				{
-					e.printStackTrace();
-				}
+			}
+			catch(InterruptedException e)
+			{
+				e.printStackTrace();
 			}
 		}
 
