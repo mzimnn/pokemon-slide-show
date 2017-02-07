@@ -36,19 +36,7 @@ public class SlideShow
 	{
 		this.stage = stage;
 		
-		Platform.runLater(() ->
-		{
-			try
-			{
-				URL url = new URL("https://upload.wikimedia.org/wikipedia/en/3/39/Pokeball.PNG");
-				
-				stage.getIcons().add(new Image(ProxyHandler.openConnection(url).getInputStream()));
-			}
-			catch(Exception e)
-			{
-				e.printStackTrace();
-			}
-		});
+		stage.getIcons().add(Cache.getIcon());
 		
 		stage.setTitle("Pokemon");
 		stage.initStyle(StageStyle.TRANSPARENT);
